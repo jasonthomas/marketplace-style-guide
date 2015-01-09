@@ -1,0 +1,153 @@
+@import 'constants';
+    
+html {
+    box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+    
+a {
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+body {
+    background: $greyscale-lighter;
+    font: 15px/1 $fira-stack;
+}
+
+#site-header {
+    align-items: center;
+    background: $greyscale-white;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    min-height: 50px;
+    padding: 0 10px;
+    
+    +desktop-nav() {
+        min-height: 60px;
+        padding: 16px 15px 14px;
+    }
+    
+    h1 {
+        align-items: center;
+        display: flex;
+        height: 50px;
+        +desktop-nav() {
+            height: auto;
+        }
+    }
+    
+    // Marketplace logo.
+    .wordmark {
+        image-replacement('../img/logo.png', 34px, 36px);
+        background-size: 165px 36px;
+        +full-logo() {
+            image-replacement('../img/logo.png', 165px, 36px);
+        }
+    }
+    
+    // Project name, appearing to the right of the Marketplace logo.
+    .site-name {
+        border-left: 1px solid $greyscale-lighter;
+        color: $primary-orange;
+        font-size: 16px;
+        font-weight: 300;
+        margin-left: 8px;
+        padding: 4px 0 4px 12px;
+        relative: top 1px;  // Aligns baseline the wordmark's baseline;
+    }
+    
+    // Hamburger icon that toggles the menu visibility at smaller screen sizes.
+    .hamburger {
+        image-replacement('../img/icon/menu.svg', 40px, 40px);
+        background-position: 10px 10px;
+        background-size: 20px 20px;
+        appearance: none;
+        border: 0;
+        cursor: pointer;
+        display: inline-block;
+        relative: left 5px;
+        transform: rotate(180deg);
+        .show-nav & {
+            transform: none;
+        }
+        +desktop-nav() {
+            display: none;
+        }
+    }
+
+    // Primary navigation.
+    nav {
+        border-top: 1px solid $greyscale-lighter;
+        display: none;
+        margin: 0 5px;
+        padding: 5px 0;
+        width: 100%;
+        +desktop-nav() {
+            background: transparent;
+            border: 0;
+            display: block;
+            margin: 0;
+            padding: 0;
+            width: auto;
+        }
+        .show-nav & {
+            display: block;
+        }
+        ul {
+            align-content: stretch;
+            align-items: center;
+            display: flex;
+            flex-grow: 1;
+            flex-wrap: wrap;
+            font-size: 14px;
+            font-weight: 300;
+            justify-content: center;
+            +desktop-nav() {
+                align-content: flex-end;
+                flex-grow: 0;
+                justify-content: flex-end;
+            }
+            li {
+                display: inline-block;
+                margin: 5px 10px;
+                +desktop-nav() {
+                    margin: 0 8px 0 0;
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
+            }
+            a {
+                color: $greyscale-darkest;
+                display: inline-block;
+                padding: 4px;
+                &:hover {
+                    border-bottom: 2px solid $greyscale-light;
+                    color: $greyscale-black;
+                    padding-bottom: 2px;
+                    text-decoration: none;
+                }
+            }
+            .active a {
+                border-bottom: 2px solid $primary-yellow;
+                color: $greyscale-black;
+                font-weight: 400;
+                padding-bottom: 2px;
+            }
+        }
+    }
+
+}
+
+#site-footer {
+    background: $greyscale-white;
+}

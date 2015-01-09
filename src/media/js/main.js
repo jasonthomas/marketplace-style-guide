@@ -27,9 +27,9 @@ function() {
         console.log('Reloading chrome');
         var nunjucks = require('templates');
         $('#site-header').html(
-            nunjucks.env.render('header.html'));
+            nunjucks.env.render('partials/header.html'));
         $('#site-footer').html(
-            nunjucks.env.render('footer.html'));
+            nunjucks.env.render('partials/footer.html'));
 
         z.body.toggleClass('logged-in', require('user').logged_in());
         z.page.trigger('reloaded_chrome');
@@ -39,6 +39,12 @@ function() {
         e.preventDefault();
         console.log('← button pressed');
         require('navigation').back();
+    });
+
+    z.body.on('click', '.hamburger', function(e) {
+        e.preventDefault();
+        console.log('Menu visiblity toggled');
+        z.body.toggleClass('show-nav');
     });
 
     // Perform initial navigation.

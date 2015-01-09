@@ -5,25 +5,18 @@
     <meta name="viewport" content="width=device-width, user-scalable=no,
                                    initial-scale=1, maximum-scale=1">
     <title>Sample App</title>
-
-    <!--Remove me.-->
-    <link rel="stylesheet"
-          href="https://marketplace-dev-cdn.allizom.org/media/fireplace/css/splash.css">
-    <link rel="stylesheet"
-          href="https://marketplace-dev-cdn.allizom.org/media/fireplace/css/include.css">
-
     {% if compiled %}
       <link rel="stylesheet" href="/media/css/splash.css">
       <link rel="stylesheet" href="/media/css/include.css">
     {% else %}
-      <!--Add stylesheets here.-->
+      <link rel="stylesheet" href="/media/css/index.styl.css">
     {% endif %}
   </head>
 
-  <body class="home" data-media="">
+  <body class="" data-media="">
     <noscript><p>Sorry, you need JavaScript to use this site.</p></noscript>
 
-    <header id="site-header" class="header site-header"></header>
+    <header id="site-header"></header>
 
     <div class="cloak"></div>
 
@@ -46,5 +39,6 @@
     {% else %}
       <script data-main="/media/js/main" src="/media/js/lib/require.js"></script>
     {% endif %}
+
   </body>
 </html>

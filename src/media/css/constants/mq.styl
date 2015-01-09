@@ -1,0 +1,87 @@
+/*
+
+Screen width breakpoints
+
+         400px       600px      800px        1050px
+
+─────┬────┘ └────┬────┘ └────┬────┘ └────┬────┘ └────┬─────
+    'xs'        's'         'm'         'l'         'xl'
+
+*/
+
+$width-xs-max = 399px
+$width-s-min = 400px
+$width-s-max = 599px
+$width-m-min = 600px
+$width-m-max = 799px
+$width-l-min = 800px
+$width-l-max = 1049px
+$width-xl-max = 1050px
+
+between(min, max) {
+  condition = 'only screen'
+  unless min is 0 {
+    condition = condition + ' and (min-width: %s)' % (min)
+  }
+  unless max is 0 {
+    condition = condition + ' and (max-width: %s)' % (max)
+  }
+  @media condition {
+    {block}
+  }
+}
+
+above(min) {
+  condition = 'only screen and (min-width: %s)' % (min)
+  @media condition {
+    {block}
+  }
+}
+
+below(max) {
+  condition = 'only screen and (max-width: %s)' % (max)
+  @media condition {
+    {block}
+  }
+}
+
+xs() {
+  +below($width-xs-max) {
+    {block}
+  }
+}
+
+s() {
+  +between($width-s-min, $width-s-max) {
+    {block}
+  }
+}
+
+m() {
+  +between($width-m-min, $width-m-max) {
+    {block}
+  }
+}
+
+l() {
+  +between($width-l-min, $width-l-max) {
+    {block}
+  }
+}
+
+xl() {
+  +above($width-xl-min) {
+    {block}
+  }
+}
+
+desktop-nav() {
+  +above($width-l-min) {
+    {block}
+  }
+}
+
+full-logo() {
+  +above($width-m-min) {
+    {block}  }
+}
