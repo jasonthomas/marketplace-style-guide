@@ -17,13 +17,13 @@ a {
 }
 
 body {
-    background: $greyscale-lighter;
+    background: $color--greyscale--lighter;
     font: 15px/1 $fira-stack;
 }
 
 #site-header {
     align-items: center;
-    background: $greyscale-white;
+    background: $color--header--background;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -56,8 +56,8 @@ body {
     
     // Project name, appearing to the right of the Marketplace logo.
     .site-name {
-        border-left: 1px solid $greyscale-lighter;
-        color: $primary-orange;
+        border-left: 1px solid $color--header--separator;
+        color: $color--header--site-name;
         font-size: 16px;
         font-weight: 300;
         margin-left: 8px;
@@ -86,7 +86,7 @@ body {
 
     // Primary navigation.
     nav {
-        border-top: 1px solid $greyscale-lighter;
+        border-top: 1px solid $color--navigation--border;
         display: none;
         margin: 0 5px;
         padding: 5px 0;
@@ -127,19 +127,19 @@ body {
                 }
             }
             a {
-                color: $greyscale-darkest;
+                color: $color--navigation--link;
                 display: inline-block;
                 padding: 4px;
                 &:hover {
-                    border-bottom: 2px solid $greyscale-light;
-                    color: $greyscale-black;
+                    border-bottom: 2px solid color--navigation--hover-underlinet;
+                    color: $color--navigation--hover;
                     padding-bottom: 2px;
                     text-decoration: none;
                 }
             }
             .active a {
-                border-bottom: 2px solid $primary-yellow;
-                color: $greyscale-black;
+                border-bottom: 2px solid $color--primary--yellow;
+                color: $color--navigation--link-active;
                 font-weight: 400;
                 padding-bottom: 2px;
             }
@@ -149,5 +149,5 @@ body {
 }
 
 #site-footer {
-    background: $greyscale-white;
+    background: $color--greyscale--white;
 }
