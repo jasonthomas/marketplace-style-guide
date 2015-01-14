@@ -9,7 +9,8 @@
  * typography file. This allows for consistency and predictability in font
  * definition and use.
  *
- * Stack names should follow the form $color--pallete-name--color-name
+ * Stack names should follow the form $font-stack--name, and be given names
+ * agnostic of any specific typeface.
  * 
  *** Text style mixins
  *
@@ -21,31 +22,31 @@
  */
 
 // Font stacks
-$font-stack--fira-sans = "Fira Sans OT", "Fira Sans", FiraSansWeb, sans-serif;
-$font-stack--fira-mono = "Fira Mono OT", "Fira Mono", FiraMonoWeb, monospace;
+$font-stack--sans = "Fira Sans OT", "Fira Sans", FiraSansWeb, sans-serif;
+$font-stack--mono = "Fira Mono OT", "Fira Mono", FiraMonoWeb, monospace;
 
 // Text style mixins
 type--h1() {
     color: $color--greyscale--black;
-    font: 300 30px/1 $font-stack--fira-sans;
+    font: 300 30px/1 $font-stack--sans;
 }
 type--h2() {
     color: $color--greyscale--black;
-    font: 300 20px/1 $font-stack--fira-sans;
+    font: 300 20px/1 $font-stack--sans;
 }
 type--h3() {
     color: $color--greyscale--darker;
-    font: 300 20px/1.25 $font-stack--fira-sans;
+    font: 300 20px/1.25 $font-stack--sans;
 }
 type--h4() {
     color: $color--greyscale--darker;
-    font: 700 15px/1.47 $font-stack--fira-sans;
+    font: 700 15px/1.47 $font-stack--sans;
 }
 type--paragraph() {
     color: $color--greyscale--darker;
-    font: 300 15px/1.47 $font-stack--fira-sans;
+    font: 300 15px/1.47 $font-stack--sans;
 }
 type--code() {
     color: $color--greyscale--darker;
-    font: 300 12px/1.34 $font-stack--fira-mono;
+    font: 300 12px/1.34 $font-stack--mono;
 }
