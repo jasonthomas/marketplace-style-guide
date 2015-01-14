@@ -1,0 +1,52 @@
+/* 
+ * typography.styl -- contains implementations of type style constants.
+ */
+
+.type--h1 {
+    type--h1();
+}
+.type--h2 {
+    type--h2();
+}
+.type--h3 {
+    type--h3();
+}
+.type--h4 {
+    type--h4();
+}
+.type--p {
+    type--paragraph();
+}
+
+/* 
+ * Any container with the attribute data-type will automatically inherit a set
+ * of type styles and margins suitable for display of basic markup.
+ */
+[data-type] {
+    h1 {
+        type--h1();
+        margin-bottom: 12px;
+    }
+    h2 {
+        type--h2();
+        margin-bottom: 16px;
+    }
+    h3 {
+        type--h3();
+        margin-bottom: 16px;
+    }
+    h4 {
+        type--h4();
+        margin-bottom: 20px;
+    }
+    p {
+        type--paragraph();
+        margin: 12px 0;
+    }
+    > :first-child {
+        margin-top: 0;
+    }
+    > :last-child {
+        margin-bottom: 0;
+    }
+}
