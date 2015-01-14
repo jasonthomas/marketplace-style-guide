@@ -1,87 +1,119 @@
 /*
+ * mq.styl -- contains variables and mixins related to media queries.
+ *
+ * We use four breakpoints, creating 5 different screen width ranges that may
+ * be targeted:
+ *
+ *          400px       600px      800px        1050px
+ * 
+ * ─────┬────┘ └────┬────┘ └────┬────┘ └────┬────┘ └────┬─────
+ *     'xs'        's'         'm'         'l'         'xl'
+ *
+ * The minimum and maximums for each point are stored in variables with names
+ * following the form $breakpoint--size--<min/max>.
+ * 
+ * Rather than reference these variables directly in media queries, we leverage
+ * block-level mixins to describe specific uses of these breakpoints. Notes:
+ *
+ * - Mixin names should follow the form mq--mixin-name.
+ * - Use mobile-first techniques wherever practical.
+ * - These mixins are created per unique usage, rather than per specific user
+ *   agent you are looking to target. For example, if you want to show a
+ *   hamburger menu on small devices, create a mixin called
+ *   `mq--hamburger-menu` with mq--below($breakpoint--l-min). This allows us to
+ *   tweak logical feature group breakpoints without making broad changes to
+ *   the entire project.
+ */
 
-Screen width breakpoints
+// Breakpoint variables
+$breakpoint--xs-max = 399px;
+$breakpoint--s-min = 400px;
+$breakpoint--s-max = 599px;
+$breakpoint--m-min = 600px;
+$breakpoint--m-max = 799px;
+$breakpoint--l-min = 800px;
+$breakpoint--l-max = 1049px;
+$breakpoint--xl-min = 1050px;
 
-         400px       600px      800px        1050px
-
-─────┬────┘ └────┬────┘ └────┬────┘ └────┬────┘ └────┬─────
-    'xs'        's'         'm'         'l'         'xl'
-
-*/
-
-$width-xs-max = 399px
-$width-s-min = 400px
-$width-s-max = 599px
-$width-m-min = 600px
-$width-m-max = 799px
-$width-l-min = 800px
-$width-l-max = 1049px
-$width-xl-max = 1050px
-
-between(min, max) {
-  condition = 'only screen'
+// Block-level mixins
+mq--between(min, max) {
+  condition = 'only screen';
   unless min is 0 {
-    condition = condition + ' and (min-width: %s)' % (min)
+    condition = condition + ' and (min-width: %s)' % (min);
   }
   unless max is 0 {
-    condition = condition + ' and (max-width: %s)' % (max)
+    condition = condition + ' and (max-width: %s)' % (max);
   }
   @media condition {
     {block}
   }
 }
-
-above(min) {
-  condition = 'only screen and (min-width: %s)' % (min)
+mq--above(min) {
+  condition = 'only screen and (min-width: %s)' % (min);
   @media condition {
     {block}
   }
 }
-
-below(max) {
-  condition = 'only screen and (max-width: %s)' % (max)
+mq--below(max) {
+  condition = 'only screen and (max-width: %s)' % (max);
   @media condition {
     {block}
   }
 }
-
-xs() {
-  +below($width-xs-max) {
+mq--retina() {
+  condition = '(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)';
+  @media condition {
+    {block}
+  }
+}
+mq--xs() {
+  +mq--below($breakpoint--xs-max) {
+    {block}
+  }
+}
+mq--s() {
+  +mq--between($breakpoint--s-min, $breakpoint--s-max) {
+    {block}
+  }
+}
+mq--m() {
+  +mq--between($breakpoint--m-min, $breakpoint--m-max) {
+    {block}
+  }
+}
+mq--l() {
+  +mq--between($breakpoint--l-min, $breakpoint--l-max) {
+    {block}
+  }
+}
+mq--xl() {
+  +mq--above($breakpoint--xl-min) {
     {block}
   }
 }
 
-s() {
-  +between($width-s-min, $width-s-max) {
+
+/*
+ * TODO: move the below mixins to a non-constants file, as they are specific
+ * implementations of constants, and not constants themselves.
+ */
+
+/*
+ * At M and below, we use a hamburger menu. This mixin matches user agents
+ * where the full menu is shown.
+ */
+mq--desktop-nav() {
+  +mq--above($breakpoint--l-min) {
     {block}
   }
 }
 
-m() {
-  +between($width-m-min, $width-m-max) {
+/*
+ * The logo is truncated to remove the wordmark at S and XS. This mixin matches
+ * user agents where the wordmark is shown.
+ */
+mq--full-logo() {
+  +mq--above($breakpoint--m-min) {
     {block}
   }
-}
-
-l() {
-  +between($width-l-min, $width-l-max) {
-    {block}
-  }
-}
-
-xl() {
-  +above($width-xl-min) {
-    {block}
-  }
-}
-
-desktop-nav() {
-  +above($width-l-min) {
-    {block}
-  }
-}
-
-full-logo() {
-  +above($width-m-min) {
-    {block}  }
 }

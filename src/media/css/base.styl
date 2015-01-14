@@ -31,7 +31,7 @@ body {
     min-height: 50px;
     padding: 0 10px;
     
-    +desktop-nav() {
+    +mq--desktop-nav() {
         min-height: 60px;
         padding: 16px 15px 14px;
     }
@@ -40,7 +40,7 @@ body {
         align-items: center;
         display: flex;
         height: 50px;
-        +desktop-nav() {
+        +mq--desktop-nav() {
             height: auto;
         }
     }
@@ -49,7 +49,7 @@ body {
     .wordmark {
         image-replacement('../img/logo.png', 34px, 36px);
         background-size: 165px 36px;
-        +full-logo() {
+        +mq--full-logo() {
             image-replacement('../img/logo.png', 165px, 36px);
         }
     }
@@ -79,7 +79,7 @@ body {
         .show-nav & {
             transform: none;
         }
-        +desktop-nav() {
+        +mq--desktop-nav() {
             display: none;
         }
     }
@@ -91,7 +91,7 @@ body {
         margin: 0 5px;
         padding: 5px 0;
         width: 100%;
-        +desktop-nav() {
+        +mq--desktop-nav() {
             background: transparent;
             border: 0;
             display: block;
@@ -111,7 +111,7 @@ body {
             font-size: 14px;
             font-weight: 300;
             justify-content: center;
-            +desktop-nav() {
+            +mq--desktop-nav() {
                 align-content: flex-end;
                 flex-grow: 0;
                 justify-content: flex-end;
@@ -119,7 +119,7 @@ body {
             li {
                 display: inline-block;
                 margin: 5px 10px;
-                +desktop-nav() {
+                +mq--desktop-nav() {
                     margin: 0 8px 0 0;
                     &:last-child {
                         margin-right: 0;
