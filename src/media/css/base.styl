@@ -154,5 +154,42 @@ body {
 }
 
 #site-footer {
+    type--footer();
+    align-items: center;
     background: $color--greyscale--white;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    
+    // Remove from the document flow and hide. Can't use display: none due to
+    // https://github.com/tj/nib/issues/291
+    position: absolute;
+    visibility: hidden;
+    +mq--show-footer() {
+        position: relative;
+        visibility: visible;
+    }
+
+    a {
+        color: $color--footer--link;
+        font-weight: 400;
+    }
+    h1 {
+        width: 100px;
+        a {
+            image-replacement('../img/logo-footer.png', 81px, 21px);
+        }
+    }
+    p {
+        border-left: 1px solid $color--footer--separator;
+        border-width: 0 1px;
+        margin-left: 10px;
+        max-width: 600px;
+        padding: 0 50px 0 10px;
+    }
+    nav {
+        border-left: 1px solid $color--footer--separator;
+        padding-left: 10px;
+        width: 200px;
+    }
 }
