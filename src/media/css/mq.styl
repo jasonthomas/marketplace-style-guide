@@ -1,0 +1,47 @@
+/*
+ * mq.styl -- media query mixins.
+ * 
+ * Rather than reference breakpoint variables directly in media queries, we
+ * leverage block-level mixins to describe specific uses of these breakpoints.
+ * Those block-level mixins are kept here.
+ *
+ * - Mixin names should follow the form mq--mixin-name.
+ * - Use mobile-first techniques wherever practical.
+ * - These mixins are created per unique usage, rather than per specific user
+ *   agent you are looking to target. For example, if you want to show a
+ *   hamburger menu on small devices, create a mixin called
+ *   `mq--hamburger-menu` with mq--below($breakpoint--l-min). This allows us to
+ *   tweak logical feature group breakpoints without making broad changes to
+ *   the entire project.
+ */
+
+
+/*
+ * At M and below, we use a hamburger menu. This mixin matches user agents
+ * where the full menu is shown.
+ */
+mq--desktop-nav() {
+  +mq--above($breakpoint--l-min) {
+    {block}
+  }
+}
+
+/*
+ * The logo is truncated to remove the wordmark at S and XS. This mixin matches
+ * user agents where the wordmark is shown.
+ */
+mq--full-logo() {
+  +mq--above($breakpoint--m-min) {
+    {block}
+  }
+}
+
+/*
+ * The footer is hidden in S, XS, and M. This mixin matches
+ * user agents where the footer is shown.
+ */
+mq--show-footer() {
+  +mq--above($breakpoint--l-min) {
+    {block}
+  }
+}

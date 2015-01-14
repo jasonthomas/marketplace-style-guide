@@ -1,5 +1,5 @@
 /*
- * mq.styl -- contains variables and mixins related to media queries.
+ * constants/mq.styl -- contains variables and mixins related to media queries.
  *
  * We use four breakpoints, creating 5 different screen width ranges that may
  * be targeted:
@@ -13,16 +13,10 @@
  * following the form $breakpoint--size--<min/max>.
  * 
  * Rather than reference these variables directly in media queries, we leverage
- * block-level mixins to describe specific uses of these breakpoints. Notes:
- *
- * - Mixin names should follow the form mq--mixin-name.
- * - Use mobile-first techniques wherever practical.
- * - These mixins are created per unique usage, rather than per specific user
- *   agent you are looking to target. For example, if you want to show a
- *   hamburger menu on small devices, create a mixin called
- *   `mq--hamburger-menu` with mq--below($breakpoint--l-min). This allows us to
- *   tweak logical feature group breakpoints without making broad changes to
- *   the entire project.
+ * block-level mixins to describe specific uses of these breakpoints. These
+ * mixins should be defined in a project's mq.styl or in core-css' 
+ * mq.styl. This file is specifically for the definition of breakpoints and
+ * 
  */
 
 // Breakpoint variables
@@ -88,42 +82,6 @@ mq--l() {
 }
 mq--xl() {
   +mq--above($breakpoint--xl-min) {
-    {block}
-  }
-}
-
-
-/*
- * TODO: move the below mixins to a non-constants file, as they are specific
- * implementations of constants, and not constants themselves.
- */
-
-/*
- * At M and below, we use a hamburger menu. This mixin matches user agents
- * where the full menu is shown.
- */
-mq--desktop-nav() {
-  +mq--above($breakpoint--l-min) {
-    {block}
-  }
-}
-
-/*
- * The logo is truncated to remove the wordmark at S and XS. This mixin matches
- * user agents where the wordmark is shown.
- */
-mq--full-logo() {
-  +mq--above($breakpoint--m-min) {
-    {block}
-  }
-}
-
-/*
- * The footer is hidden in S, XS, and M. This mixin matches
- * user agents where the footer is shown.
- */
-mq--show-footer() {
-  +mq--above($breakpoint--l-min) {
     {block}
   }
 }
