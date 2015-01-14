@@ -15,7 +15,6 @@
     "commonplace": "*",
     "gulp": "3.8.x",
     "marketplace-gulp": "*",
-    "nib": "^1.0.4",
     "node.extend": "1.1.2"
   },
   "devDependencies": {

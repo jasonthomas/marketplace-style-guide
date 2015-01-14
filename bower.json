@@ -10,7 +10,9 @@
     "jquery": "2.0.2",
     "requirejs": "2.1.4",
     "underscore": "1.4.4",
-    "fira": "~0.1.0"
+    "fira": "0.1.0",
+    "jeet": "6.1.2",
+    "nib": "1.0.4"
   },
   "ignore": [
     "*.py",
