@@ -117,3 +117,13 @@ mq--full-logo() {
     {block}
   }
 }
+
+/*
+ * The footer is hidden in S, XS, and M. This mixin matches
+ * user agents where the footer is shown.
+ */
+mq--show-footer() {
+  +mq--above($breakpoint--l-min) {
+    {block}
+  }
+}
