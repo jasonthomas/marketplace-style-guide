@@ -151,6 +151,10 @@ body {
 #page {
     margin: 0 auto;
     max-width: $grid--max-content-width;
+    padding: 15px;
+    +mq--narrow-gutter() {
+        padding: 40px 20px;
+    }
 }
 
 #site-footer {

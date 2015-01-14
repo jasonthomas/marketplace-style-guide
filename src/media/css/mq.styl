@@ -45,3 +45,13 @@ mq--show-footer() {
     {block}
   }
 }
+
+/*
+ * The gutter around the main content area is larger in L and XL. This mixin
+ * matches user agents where the gutter is larger.
+ */
+mq--narrow-gutter() {
+  +mq--above($breakpoint--l-min) {
+    {block}
+  }
+}
