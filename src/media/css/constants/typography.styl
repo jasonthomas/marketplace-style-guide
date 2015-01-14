@@ -1,0 +1,51 @@
+/* 
+ * typography.styl -- contains variables and mixins for font stacks and type
+ * styles
+ *
+ *** Font stacks
+ *
+ * Any time you would reference a font stack in CSS, you should instead be
+ * using a variable defined in either this file or a project-specific
+ * typography file. This allows for consistency and predictability in font
+ * definition and use.
+ *
+ * Stack names should follow the form $color--pallete-name--color-name
+ * 
+ *** Text style mixins
+ *
+ * As much as is reasonable, text styles should be contained in mixins for
+ * consistency, reusability, and a clear sign of intent. These mixins should
+ * be defined either here or in a project-specific typography file.
+ *
+ * Type style mixin names should follow the form type--style-name
+ */
+
+// Font stacks
+$font-stack--fira-sans = "Fira Sans OT", "Fira Sans", FiraSansWeb, sans-serif;
+$font-stack--fira-mono = "Fira Mono OT", "Fira Mono", FiraMonoWeb, monospace;
+
+// Text style mixins
+type--h1() {
+    color: $color--greyscale--black;
+    font: 300 30px/1 $font-stack--fira-sans;
+}
+type--h2() {
+    color: $color--greyscale--black;
+    font: 300 20px/1 $font-stack--fira-sans;
+}
+type--h3() {
+    color: $color--greyscale--darker;
+    font: 300 20px/1.25 $font-stack--fira-sans;
+}
+type--h4() {
+    color: $color--greyscale--darker;
+    font: 700 15px/1.47 $font-stack--fira-sans;
+}
+type--paragraph() {
+    color: $color--greyscale--darker;
+    font: 300 15px/1.47 $font-stack--fira-sans;
+}
+type--code() {
+    color: $color--greyscale--darker;
+    font: 300 12px/1.34 $font-stack--fira-mono;
+}
