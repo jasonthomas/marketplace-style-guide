@@ -10,7 +10,7 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
     }
 
     return _.defaults(settings_local, {
-        app_name: 'commonplace app',
+        app_name: 'style guide',
         init_module: 'main',
         default_locale: 'en-US',
         api_url: 'http://' + window.location.hostname,  // No trailing slash, please.
@@ -47,6 +47,6 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         persona_tos: null,
         persona_privacy: null,
 
-        title_suffix: 'Commonplace App'
+        title_suffix: 'Firefox Marketplace Style Guide'
     });
 });

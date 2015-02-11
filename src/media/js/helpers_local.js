@@ -1,11 +1,25 @@
-define('helpers_local', ['nunjucks'], function(nunjucks) {
+define('helpers_local', ['log', 'nunjucks', 'routes_static'],
+    function(log, nunjucks, routes) {
+
+    var logger = log('helpers_local')
     var filters = nunjucks.require('filters');
     var globals = nunjucks.require('globals');
 
+
     // filters.myFilter = function(text) {...
+
+    function url_static(name) {
+        try {
+            return routes[name].path;
+        } catch(err) {
+            logger.error('Could not find the static view "' + name + '".');
+            return '';
+        }
+    }
 
     // Functions provided in the default context.
     var helpers = {
+        url_static: url_static
     };
 
     // Put the helpers into the nunjucks global.

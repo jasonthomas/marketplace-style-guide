@@ -35,6 +35,10 @@ function() {
         z.page.trigger('reloaded_chrome');
     }).trigger('reload_chrome');
 
+    z.page.one('loaded', function() {
+        z.body.addClass('loaded');
+    });
+
     z.body.on('click', '.site-header .back', function(e) {
         e.preventDefault();
         console.log('← button pressed');
