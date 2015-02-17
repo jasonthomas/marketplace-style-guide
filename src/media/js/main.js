@@ -28,6 +28,7 @@ function() {
         var nunjucks = require('templates');
         $('#site-header').html(
             nunjucks.env.render('_includes/header.html'));
+        $('#site-nav').html(nunjucks.env.render('_includes/nav.html'));
         $('#site-footer').html(
             nunjucks.env.render('_includes/footer.html'));
 
@@ -39,16 +40,13 @@ function() {
         z.body.addClass('loaded');
     });
 
-    z.body.on('click', '.site-header .back', function(e) {
+    z.body.on('click touchstart', '.hamburger', function(e) {
         e.preventDefault();
-        console.log('← button pressed');
-        require('navigation').back();
+        z.body.toggleClass('show-nav');
     });
 
-    z.body.on('click', '.hamburger', function(e) {
-        e.preventDefault();
-        console.log('Menu visiblity toggled');
-        z.body.toggleClass('show-nav');
+    z.page.on('navigate', function(e) {
+        z.body.removeClass('show-nav');
     });
 
     // Perform initial navigation.

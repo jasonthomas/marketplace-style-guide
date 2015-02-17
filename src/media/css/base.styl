@@ -2,6 +2,7 @@
     
 html {
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 *,
 *:before,
@@ -19,6 +20,13 @@ a {
 body {
     background: $color--greyscale--lighter;
     font: 15px/1 $font-stack--sans;
+    transition: transform ease 250ms;
+    &.show-nav {
+        transform: translateX(250px);
+        +mq--desktop-nav() {
+            transform: translateX(0);
+        }
+    }
 }
 
 #site-header {
@@ -28,36 +36,31 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    min-height: 50px;
-    padding: 0 10px;
+    min-height: 60px;
+    padding: 0 5px;
     
     +mq--desktop-nav() {
         min-height: 60px;
-        padding: 16px 15px 14px;
+        padding: 0 20px;
     }
     
     h1 {
         align-items: center;
         display: flex;
         height: 50px;
-        +mq--desktop-nav() {
-            height: auto;
-        }
+        order: 2;
     }
     
     // Marketplace logo.
     .wordmark {
-        image-replacement('../img/logo.png', 34px, 36px);
-        background-size: 165px 36px;
-        +mq--full-logo() {
-            image-replacement('../img/logo.png', 165px, 36px);
-        }
+        image-replacement('../img/logo/rocket-color.svg', 26px, 40px);
     }
     
     // Project name, appearing to the right of the Marketplace logo.
     .site-name {
         border-left: 1px solid $color--header--separator;
         color: $color--header--site-name;
+        display: none;
         font-size: 16px;
         font-weight: 300;
         margin-left: 8px;
@@ -68,85 +71,137 @@ body {
     // Hamburger icon that toggles the menu visibility at smaller screen sizes.
     .hamburger {
         image-replacement('../img/icon/menu.svg', 40px, 40px);
-        background-position: 10px 10px;
-        background-size: 20px 20px;
+        background-position: 0 0;
+        background-size: 40px 140px;
         appearance: none;
         border: 0;
         cursor: pointer;
         display: inline-block;
+        order: 1;
         relative: left 5px;
-        transform: rotate(180deg);
-        .show-nav & {
-            transform: none;
+        &:hover {
+            background-position: 0 -50px;
+        }
+        .show-nav &,
+        &:active {
+            background-position: 0 -100px;
+        }
+        +mq--retina() {
+            background-image: url('../img/icon/menu@2x.png');
         }
         +mq--desktop-nav() {
             display: none;
+            order: 3;
         }
     }
-
-    // Primary navigation.
-    nav {
-        border-top: 1px solid $color--navigation--border;
-        display: none;
-        margin: 0 5px;
-        padding: 5px 0;
-        width: 100%;
-        +mq--desktop-nav() {
-            background: transparent;
-            border: 0;
-            display: block;
-            margin: 0;
-            padding: 0;
-            width: auto;
-        }
-        .show-nav & {
-            display: block;
-        }
-        ul {
-            align-content: stretch;
-            align-items: center;
-            display: flex;
-            flex-grow: 1;
-            flex-wrap: wrap;
-            font-size: 14px;
-            font-weight: 300;
-            justify-content: center;
-            +mq--desktop-nav() {
-                align-content: flex-end;
-                flex-grow: 0;
-                justify-content: flex-end;
-            }
-        }
-        li {
-            display: inline-block;
-            margin: 5px 10px;
-            +mq--desktop-nav() {
-                margin: 0 8px 0 0;
-                &:last-child {
-                    margin-right: 0;
-                }
-            }
-        }
-        a {
-            color: $color--navigation--link;
-            display: inline-block;
-            padding: 4px;
-            &:hover {
-                border-bottom: 2px solid $color--navigation--hover-underline;
-                color: $color--navigation--hover;
-                padding-bottom: 2px;
-                text-decoration: none;
-            }
-        }
-        .active a {
-            border-bottom: 2px solid $color--primary--yellow;
-            color: $color--navigation--active;
-            font-weight: 400;
-            padding-bottom: 2px;
-        }
+    
+    .shim {
+        display: inline-block;
+        order: 3;
+        width: 40px;
     }
 
 }
+
+#site-nav {
+    background: linear-gradient(top, #6E328F, #AF2868);
+    border-right: 2px solid rgba(0, 0, 0, 0.2);
+    fixed: top 0 left 0;
+    font-size: 18px;
+    height: 100vh;
+    overflow-y: scroll;
+    transform: translateX(-250px);
+    width: 250px;
+
+    > ul {
+        background: url(../img/logo/full-white.svg) no-repeat 30px 30px;
+        background-size: 182px 35px
+        padding: 75px 30px 30px
+        ul {
+            font-size: 16px;
+            margin-left: 25px;
+            li {
+                margin: 15px 0;
+                &:first-child {
+                    margin-top: 0;
+                }
+            }
+            +mq--desktop-nav() {
+                absolute: top 60px left 0;
+                align-items: center;
+                background: #60BFFD;
+                box-sizing: content-box;
+                display: flex;
+                height: 60px;
+                justify-content: center;
+                margin: 0 -60px 60px;
+                padding: 0 60px;
+                width: 100%
+                li {
+                    margin: 0 15px;
+                }
+                a {
+                    color: $color--greyscale--white;
+                }
+            }
+        }
+        li {
+            margin: 25px 0;
+            +mq--desktop-nav() {
+                margin 0 15px;
+            }
+        }
+        a {
+            color: $color--greyscale--white;
+            font-weight: 300;
+            &.active {
+                background: #FFF;
+                border-radius: 3px;
+                color: #902C7B;
+                cursor: default;
+                display: inline-block;
+                margin-bottom: 15px;
+                padding: 6px 9px;
+                relative: left -10px;
+                text-decoration: none;
+            }
+            +mq--desktop-nav() {
+                color: #1a1a1a;
+                &.active {
+                    background: #60BFFD;
+                    color: $color--greyscale--white;
+                    left: 0;
+                    margin: 0;
+                }
+            }
+        }
+        +mq--desktop-nav() {
+            background: transparent;
+            font-size: 16px;
+            padding: 0;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            min-height: 60px;
+        }
+    }
+
+    +mq--desktop-nav() {
+        background: transparent;
+        border: 0;
+        height: auto;
+        margin: 0 60px;
+        overflow: visible;
+        padding: 0;
+        relative: top -60px;
+        transform: translateX(0);
+        width: auto;
+        .home {
+            display: none;
+        }
+    }
+}
+
 
 #page {
     margin: 0 auto;
